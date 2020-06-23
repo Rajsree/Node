@@ -1,6 +1,12 @@
-var http = require('http');
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('Hello World!');
-}).listen(8080);
+const server = http.createServer((req, res) => {
+  if(req.url === "/") {
+    res.writeHead(200, {'Content-Type' : 'text/html'})
+    res.end('<h1>Home</h1>'); 
+  }
+});
+const PORT = process.env.PORT || 8080
+server.listen(PORT, () => console.log(`Server RUNNING in ${PORT}`));
